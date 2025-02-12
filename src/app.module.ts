@@ -6,9 +6,13 @@ import { PersonalModule } from './personal/personal.module';
 import { ExerciseModule } from './exercise/exercise.module';
 import { WorkoutsModule } from './workouts/workouts.module';
 import { GroupsModule } from './groups/groups.module';
+import { ModelsController } from './models/models.controller';
+import { ModelsService } from './models/models.service';
+import { ModelsModule } from './models/models.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, UsersModule, PersonalModule, ExerciseModule, WorkoutsModule, GroupsModule],
-  controllers: [],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, UsersModule, PersonalModule, ExerciseModule, WorkoutsModule, GroupsModule, ModelsModule],
+  controllers: [ModelsController],
+  providers: [ModelsService],
 })
 export class AppModule {}
