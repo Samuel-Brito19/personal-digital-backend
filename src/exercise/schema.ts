@@ -7,6 +7,7 @@ import {
   text,
   varchar,
 } from 'drizzle-orm/pg-core';
+import { workouts } from 'src/workouts/schema';
 
 export const exercise = pgTable(
   'exercise',
@@ -19,6 +20,8 @@ export const exercise = pgTable(
     weight: integer(),
     description: text('description').notNull(),
     done: boolean().notNull(),
+    link: text().notNull(),
+    workoutId: integer('workoutId').references(() => workouts.id),
   },
   (table) => [
     check(
