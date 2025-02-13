@@ -1,6 +1,6 @@
 import { relations } from 'drizzle-orm';
 import { integer, pgTable, text, varchar } from 'drizzle-orm/pg-core';
-import { users } from 'src/users/schema';
+import { client } from 'src/client/schema';
 
 export const personal = pgTable('personal', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -11,5 +11,5 @@ export const personal = pgTable('personal', {
 });
 
 export const personalRelations = relations(personal, ({ many }) => ({
-  client: many(users),
+  client: many(client),
 }));

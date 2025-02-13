@@ -10,9 +10,10 @@ import { ModelsController } from './models/models.controller';
 import { ModelsService } from './models/models.service';
 import { ModelsModule } from './models/models.module';
 import { ClientModule } from './client/client.module';
+import { ExerciseModuleModule } from './exercise-module/exercise-module.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, UsersModule, PersonalModule, ExerciseModule, WorkoutsModule, GroupsModule, ModelsModule, ClientModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, UsersModule, PersonalModule, ExerciseModule, WorkoutsModule, GroupsModule, ModelsModule, ClientModule, ExerciseModuleModule],
   controllers: [ModelsController],
   providers: [ModelsService],
 })
