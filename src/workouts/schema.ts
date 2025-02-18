@@ -21,8 +21,16 @@ export const workouts = pgTable('workouts', {
 
 export const workoutRelations = relations(workouts, ({ one, many }) => ({
   exercises: many(exercise),
-  clients: one(workouts, {
+  personal: one(personal, {
+    fields: [workouts.personalId],
+    references: [personal.id],
+  }),
+  clients: one(client, {
     fields: [workouts.clientId],
     references: [client.id],
+  }),
+  model: one(models, {
+    fields: [workouts.model_id],
+    references: [models.id],
   }),
 }));

@@ -1,7 +1,7 @@
 import { relations, sql } from 'drizzle-orm';
 import { boolean, check, integer, pgTable, text } from 'drizzle-orm/pg-core';
 import { exercise } from 'src/exercise/schema';
-import { workouts } from 'src/workouts/schema';
+import { models } from 'src/models/schema';
 
 export const exerciseModule = pgTable(
   'exerciseModule',
@@ -11,7 +11,7 @@ export const exerciseModule = pgTable(
     duration: integer(),
     repetitions: integer(),
     weight: integer(),
-    workoutId: integer('workoutId').references(() => workouts.id),
+    model_id: integer('model_id').references(() => models.id),
     exerciseId: integer('exerciseId').references(() => exercise.id),
     done: boolean().notNull(),
     link: text().notNull(),
@@ -24,3 +24,14 @@ export const exerciseModule = pgTable(
     ),
   ],
 );
+
+export const exerciseModuleRelations = relations(exerciseModule, ({ one }) => ({
+  model: one(models, {
+    fields: [exerciseModule.model_id],
+    references: [models.id],
+  }),
+  exercise: one(exercise, {
+    fields: [exerciseModule.exerciseId],
+    references: [exercise.id],
+  }),
+}));
