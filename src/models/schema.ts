@@ -5,7 +5,9 @@ import { personal } from 'src/personal/schema';
 export const models = pgTable('models', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
-  personalId: integer('personalId').references(() => personal.id),
+  personalId: integer('personalId').references(() => personal.id, {
+    onDelete: 'cascade',
+  }),
 });
 
 export const modelsRelations = relations(models, ({ one }) => ({

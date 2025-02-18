@@ -1,4 +1,4 @@
-import { sql } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import { boolean, check, integer, pgTable, text } from 'drizzle-orm/pg-core';
 import { exercise } from 'src/exercise/schema';
 import { workouts } from 'src/workouts/schema';
