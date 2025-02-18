@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import { integer, pgTable, varchar } from 'drizzle-orm/pg-core';
 import { personal } from 'src/personal/schema';
 
@@ -6,3 +7,10 @@ export const models = pgTable('models', {
   name: varchar({ length: 255 }).notNull(),
   personalId: integer('personalId').references(() => personal.id),
 });
+
+export const modelsRelations = relations(models, ({ one }) => ({
+  personal: one(personal, {
+    fields: [models.personalId],
+    references: [personal.id],
+  }),
+}));
