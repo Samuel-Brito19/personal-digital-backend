@@ -1,6 +1,7 @@
 import { relations } from 'drizzle-orm';
 import { integer, pgTable, text, varchar } from 'drizzle-orm/pg-core';
 import { client } from 'src/client/schema';
+import { groups } from 'src/groups/schema';
 import { models } from 'src/models/schema';
 
 export const personal = pgTable('personal', {
@@ -15,4 +16,5 @@ export const personal = pgTable('personal', {
 export const personalRelations = relations(personal, ({ many }) => ({
   client: many(client),
   templates: many(models),
+  groups: many(groups),
 }));
