@@ -3,6 +3,14 @@ import { DATABASE_CONECTION } from './database-connection';
 import { ConfigService } from '@nestjs/config';
 import { Pool } from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
+import * as clientSchema from '../client/schema';
+import * as personalSchema from '../personal/schema';
+import * as workoutSchema from '../workouts/schema';
+import * as modelsSchema from '../models/schema';
+import * as exerciseShema from '../exercise/schema';
+import * as exerciseModuleSchema from '../exercise-module/schema';
+import * as exerciseWorkoutSchema from '../exercise-workout/schema';
+import * as groupsSchema from '../groups/schema';
 
 @Module({
   providers: [
@@ -13,7 +21,16 @@ import { drizzle } from 'drizzle-orm/node-postgres';
           connectionString: configService.getOrThrow('DATABASE_URL'),
         });
         return drizzle(pool, {
-          schema: {},
+          schema: {
+            ...clientSchema,
+            ...personalSchema,
+            ...workoutSchema,
+            ...exerciseModuleSchema,
+            ...exerciseShema,
+            ...exerciseWorkoutSchema,
+            ...groupsSchema,
+            ...modelsSchema,
+          },
         });
       },
       inject: [ConfigService],
