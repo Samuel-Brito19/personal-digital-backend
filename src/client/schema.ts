@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { integer, pgTable, varchar } from 'drizzle-orm/pg-core';
+import { integer, pgTable } from 'drizzle-orm/pg-core';
 import { groups } from 'src/groups/schema';
 import { personal } from 'src/personal/schema';
 import { user } from 'src/user/schema';

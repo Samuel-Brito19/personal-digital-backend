@@ -1,13 +1,13 @@
 import { relations } from 'drizzle-orm';
-import { integer, pgTable, varchar } from 'drizzle-orm/pg-core';
+import { integer, pgTable, text } from 'drizzle-orm/pg-core';
 import { client } from 'src/client/schema';
 import { personal } from 'src/personal/schema';
 
 export const user = pgTable('user', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull(),
-  email: varchar({ length: 255 }).notNull().unique(),
-  password: varchar({ length: 255 }).notNull(),
+  name: text().notNull(),
+  email: text().notNull().unique(),
+  password: text().notNull(),
 });
 
 export const userRelations = relations(user, ({ one }) => ({

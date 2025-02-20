@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { integer, pgTable, varchar } from 'drizzle-orm/pg-core';
+import { integer, pgTable, text } from 'drizzle-orm/pg-core';
 import { client } from 'src/client/schema';
 import { exercise } from 'src/exercise/schema';
 import { models } from 'src/models/schema';
@@ -7,7 +7,7 @@ import { personal } from 'src/personal/schema';
 
 export const workouts = pgTable('workouts', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull(),
+  name: text().notNull(),
   personalId: integer('personalId').references(() => personal.id, {
     onDelete: 'cascade',
   }),

@@ -4,4 +4,6 @@ export class CreatePersonal {
   instagram_link: string;
   whatsapp_link: string;
   model_id: number;
+  cref: string;
+  user_id: number;
 }
