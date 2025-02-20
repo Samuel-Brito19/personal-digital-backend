@@ -69,6 +69,7 @@ CREATE TABLE "user" (
 	"name" text NOT NULL,
 	"email" text NOT NULL,
 	"password" text NOT NULL,
+	"phone_number" text NOT NULL,
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint

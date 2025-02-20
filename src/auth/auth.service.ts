@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
-import { User } from 'src/user/dto/create-user-dto';
+import { CreateUserDTO } from 'src/user/dto/create-user-dto';
 import { UserService } from 'src/user/user.service';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class AuthService {
   async signIn(
     name: string,
     password: string,
-  ): Promise<{ access_token: string; user: User }> {
+  ): Promise<{ access_token: string; user: CreateUserDTO }> {
     const user = await this.userService.findUser(name);
 
     const isValidPassword = await compare(password, user.password);

@@ -3,7 +3,7 @@ import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { DATABASE_CONECTION } from 'src/database/database-connection';
 import * as schema from './schema';
 import { eq } from 'drizzle-orm';
-import { compare, hash } from 'bcrypt';
+import { hash } from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -19,7 +19,7 @@ export class UserService {
   }
 
   async createUser(user: typeof schema.user.$inferInsert) {
-    const { password, email, name } = user;
+    const { password, email } = user;
     const hashPassword = await hash(password, 8);
 
     if (!email.includes('@')) {
@@ -34,5 +34,15 @@ export class UserService {
       password: hashPassword,
     });
     return user;
+  }
+
+  async getAllUsers() {
+    return this.database.query.user.findMany({
+      columns: {
+        id: true,
+        name: true,
+        email: true,
+      },
+    });
   }
 }

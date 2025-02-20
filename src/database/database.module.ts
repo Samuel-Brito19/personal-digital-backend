@@ -11,6 +11,7 @@ import * as exerciseShema from '../exercise/schema';
 import * as exerciseModuleSchema from '../exercise-module/schema';
 import * as exerciseWorkoutSchema from '../exercise-workout/schema';
 import * as groupsSchema from '../groups/schema';
+import * as userSchema from '../user/schema';
 
 @Module({
   providers: [
@@ -30,11 +31,13 @@ import * as groupsSchema from '../groups/schema';
             ...exerciseWorkoutSchema,
             ...groupsSchema,
             ...modelsSchema,
+            ...userSchema,
           },
         });
       },
       inject: [ConfigService],
     },
   ],
+  exports: [DATABASE_CONECTION],
 })
 export class DatabaseModule {}
