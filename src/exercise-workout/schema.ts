@@ -12,14 +12,14 @@ export const exerciseWorkout = pgTable(
     repetitions: integer(),
     weight: integer(),
     workout_id: integer('model_id').references(() => workouts.id),
-    exerciseId: integer('exerciseId').references(() => exercise.id),
+    exercise_id: integer('exercise_id').references(() => exercise.id),
     done: boolean().notNull(),
     link: text().notNull(),
   },
   (table) => [
     check(
       'only_one',
-      sql`${table.duration} IS NOT NULL AND ${table.repetitions} IS NULL
+      sql`${table.duration} IS NOT NULL AND ${table.repetitions} IS NULL OR
             ${table.repetitions} IS NOT NULL AND ${table.duration} IS NULL`,
     ),
   ],
@@ -33,7 +33,7 @@ export const exerciseWorkoutRelations = relations(
       references: [workouts.id],
     }),
     exercise: one(exercise, {
-      fields: [exerciseWorkout.exerciseId],
+      fields: [exerciseWorkout.exercise_id],
       references: [exercise.id],
     }),
   }),

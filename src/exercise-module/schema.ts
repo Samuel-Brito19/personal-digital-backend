@@ -6,21 +6,21 @@ import { models } from 'src/models/schema';
 export const exerciseModule = pgTable(
   'exerciseModule',
   {
-    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    id: integer().primaryKey(),
     sets: integer().notNull(),
     duration: integer(),
     repetitions: integer(),
     weight: integer(),
     model_id: integer('model_id').references(() => models.id),
-    exerciseId: integer('exerciseId').references(() => exercise.id),
+    exercise_id: integer('exercise_id').references(() => exercise.id),
     done: boolean().notNull(),
     link: text().notNull(),
   },
   (table) => [
     check(
       'only_one',
-      sql`${table.duration} IS NOT NULL AND ${table.repetitions} IS NULL
-        ${table.repetitions} IS NOT NULL AND ${table.duration} IS NULL`,
+      sql`(${table.duration} IS NOT NULL AND ${table.repetitions} IS NULL) OR
+           (${table.repetitions} IS NOT NULL AND ${table.duration} IS NULL)`,
     ),
   ],
 );
@@ -31,7 +31,7 @@ export const exerciseModuleRelations = relations(exerciseModule, ({ one }) => ({
     references: [models.id],
   }),
   exercise: one(exercise, {
-    fields: [exerciseModule.exerciseId],
+    fields: [exerciseModule.exercise_id],
     references: [exercise.id],
   }),
 }));
