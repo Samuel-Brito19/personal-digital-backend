@@ -1,9 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { DATABASE_CONECTION } from 'src/database/database-connection';
 import * as schema from './schema';
 import { eq } from 'drizzle-orm';
-import { hash } from 'bcrypt';
+import { compare, hash } from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -19,8 +19,15 @@ export class UserService {
   }
 
   async createUser(user: typeof schema.user.$inferInsert) {
-    const { password } = user;
+    const { password, email, name } = user;
     const hashPassword = await hash(password, 8);
+
+    if (!email.includes('@')) {
+      throw new BadRequestException('Email inválido!');
+    }
+    if (password.length < 6) {
+      throw new BadRequestException('Senha muito curta!');
+    }
 
     await this.database.insert(schema.user).values({
       ...user,
