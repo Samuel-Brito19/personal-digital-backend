@@ -45,4 +45,12 @@ export class UserService {
       },
     });
   }
+
+  async updateUser(userId: number, user: typeof schema.user.$inferInsert) {
+    return this.database
+      .update(schema.user)
+      .set(user)
+      .where(eq(schema.user.id, userId))
+      .returning();
+  }
 }

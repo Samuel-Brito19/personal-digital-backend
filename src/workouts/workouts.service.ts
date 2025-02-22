@@ -25,11 +25,14 @@ export class WorkoutsService {
     });
   }
 
-  async updateWorkout(id: number, data: typeof schema.workouts.$inferInsert) {
+  async updateWorkout(
+    workoutId: number,
+    data: typeof schema.workouts.$inferInsert,
+  ) {
     return this.database
       .update(schema.workouts)
       .set(data)
-      .where(eq(schema.workouts.id, id))
+      .where(eq(schema.workouts.id, workoutId))
       .returning();
   }
 }
