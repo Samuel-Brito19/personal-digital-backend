@@ -13,7 +13,7 @@ export const exerciseModule = pgTable(
     weight: integer(),
     model_id: integer('model_id').references(() => models.id),
     exercise_id: integer('exercise_id').references(() => exercise.id),
-    done: boolean().notNull(),
+    done: boolean(),
     link: text().notNull(),
   },
   (table) => [
