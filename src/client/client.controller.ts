@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { CreateClientDTO } from './dto/create-client-dto';
 
@@ -18,6 +18,14 @@ export class ClientController {
 
   @Post()
   async createClient(@Body() data: CreateClientDTO) {
-    await this.clientService.createClient(data);
+    return this.clientService.createClient(data);
+  }
+
+  @Put(':id')
+  async updateClient(
+    @Param(':id') clientId: number,
+    @Body() data: CreateClientDTO,
+  ) {
+    return this.clientService.updateClient(clientId, data);
   }
 }

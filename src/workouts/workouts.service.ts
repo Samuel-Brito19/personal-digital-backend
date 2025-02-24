@@ -16,7 +16,7 @@ export class WorkoutsService {
   }
 
   async getWorkouts() {
-    await this.database.query.workouts.findMany();
+    return this.database.query.workouts.findMany();
   }
 
   async findWorkoutByName(name: string) {
@@ -29,7 +29,7 @@ export class WorkoutsService {
     workoutId: number,
     data: typeof schema.workouts.$inferInsert,
   ) {
-    return this.database
+    await this.database
       .update(schema.workouts)
       .set(data)
       .where(eq(schema.workouts.id, workoutId))

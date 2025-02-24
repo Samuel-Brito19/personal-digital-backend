@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDTO } from './dto/create-user-dto';
 import { Public } from 'src/auth/decorator';
@@ -21,5 +21,13 @@ export class UserController {
   @Post()
   async createUser(@Body() request: CreateUserDTO) {
     return this.userService.createUser(request);
+  }
+
+  @Put(':id')
+  async updateUser(
+    @Param('id') userId: number,
+    @Body() request: CreateUserDTO,
+  ) {
+    return this.userService.updateUser(userId, request);
   }
 }

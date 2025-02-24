@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { PersonalService } from './personal.service';
 import { CreatePersonalDTO } from './dto/create-personal-dto';
 
@@ -19,5 +19,13 @@ export class PersonalController {
   @Get(':name')
   async getPersonalByName(name: string) {
     return this.personalService.getPersonalByName(name);
+  }
+
+  @Put(':id')
+  async updatePersonal(
+    @Param(':id') personalId: number,
+    @Body() data: CreatePersonalDTO,
+  ) {
+    return this.personalService.updatePersonal(personalId, data);
   }
 }

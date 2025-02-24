@@ -29,7 +29,7 @@ export class PersonalService {
     personalId: number,
     data: typeof schema.personal.$inferInsert,
   ) {
-    return this.database
+    await this.database
       .update(schema.personal)
       .set(data)
       .where(eq(schema.personal.id, personalId))
