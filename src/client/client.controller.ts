@@ -11,9 +11,9 @@ export class ClientController {
     return this.clientService.findClients();
   }
 
-  @Get(':name')
-  async findClientByName(name: string) {
-    return this.clientService.getClientByName(name);
+  @Get(':id')
+  async findPersonalClients(@Param('id') personalId: number) {
+    return this.clientService.findPersonalClients(personalId);
   }
 
   @Post()

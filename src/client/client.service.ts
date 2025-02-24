@@ -3,7 +3,6 @@ import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { DATABASE_CONECTION } from 'src/database/database-connection';
 import * as schema from './schema';
 import { and, eq } from 'drizzle-orm';
-import { personal } from 'src/personal/schema';
 
 @Injectable()
 export class ClientService {
@@ -25,10 +24,6 @@ export class ClientService {
 
   async createClient(client: typeof schema.client.$inferInsert) {
     await this.database.insert(schema.client).values(client).returning();
-  }
-
-  async getClientByName(name: string, personalId: number) {
-    await this.database.select();
   }
 
   async updateClient(clientId, data: typeof schema.client.$inferInsert) {

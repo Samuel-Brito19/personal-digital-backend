@@ -15,7 +15,14 @@ export class WorkoutsService {
     await this.database.insert(schema.workouts).values(workout).returning();
   }
 
-  async getWorkouts() {
+  async getWorkouts(clientId: number) {
+    return this.database
+      .select()
+      .from(schema.workouts)
+      .where(eq(schema.workouts.client_id, clientId));
+  }
+
+  async getAllWorkouts() {
     return this.database.query.workouts.findMany();
   }
 
