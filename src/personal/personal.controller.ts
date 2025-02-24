@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { Public } from 'src/auth/decorator';
 import { PersonalService } from './personal.service';
 import { CreatePersonalDTO } from './dto/create-personal-dto';
 
@@ -8,7 +7,7 @@ export class PersonalController {
   constructor(private readonly personalService: PersonalService) {}
 
   @Get()
-  async getPersonals() {
+  async findPersonals() {
     return this.personalService.getPersonals();
   }
 
