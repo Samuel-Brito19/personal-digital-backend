@@ -1,4 +1,4 @@
-export class CreatePersonal {
+export class CreatePersonalDTO {
   name: string;
   description: string;
   instagram_link: string;
