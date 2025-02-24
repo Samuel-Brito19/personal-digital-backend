@@ -22,7 +22,7 @@ export class UserService {
     const { password, email } = user;
     const hashPassword = await hash(password, 8);
 
-    if (!email.includes('@')) {
+    if (!email.includes('@') || !email.includes('.com')) {
       throw new BadRequestException('Email inválido!');
     }
     if (password.length < 6) {

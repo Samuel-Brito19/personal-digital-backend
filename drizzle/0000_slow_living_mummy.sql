@@ -17,7 +17,7 @@ CREATE TABLE "exerciseModule" (
 	"weight" integer,
 	"model_id" integer,
 	"exercise_id" integer,
-	"done" boolean NOT NULL,
+	"done" boolean,
 	"link" text NOT NULL,
 	CONSTRAINT "only_one" CHECK (("exerciseModule"."duration" IS NOT NULL AND "exerciseModule"."repetitions" IS NULL) OR
            ("exerciseModule"."repetitions" IS NOT NULL AND "exerciseModule"."duration" IS NULL))
@@ -31,7 +31,7 @@ CREATE TABLE "exerciseWorkout" (
 	"weight" integer,
 	"model_id" integer,
 	"exercise_id" integer,
-	"done" boolean NOT NULL,
+	"done" boolean,
 	"link" text NOT NULL,
 	CONSTRAINT "only_one" CHECK ("exerciseWorkout"."duration" IS NOT NULL AND "exerciseWorkout"."repetitions" IS NULL OR
             "exerciseWorkout"."repetitions" IS NOT NULL AND "exerciseWorkout"."duration" IS NULL)

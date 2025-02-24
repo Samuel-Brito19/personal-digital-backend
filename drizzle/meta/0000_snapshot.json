@@ -1,5 +1,5 @@
 {
-  "id": "04c08205-63f7-4e9b-9c6e-da4d485646e0",
+  "id": "e0dc2fae-044e-484e-b991-31769f136c83",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -179,7 +179,7 @@
           "name": "done",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "link": {
           "name": "link",
@@ -289,7 +289,7 @@
           "name": "done",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "link": {
           "name": "link",
