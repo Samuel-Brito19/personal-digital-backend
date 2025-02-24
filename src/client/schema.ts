@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { integer, pgTable } from 'drizzle-orm/pg-core';
+import { integer, pgTable, text } from 'drizzle-orm/pg-core';
 import { groups } from 'src/groups/schema';
 import { personal } from 'src/personal/schema';
 import { user } from 'src/user/schema';
@@ -10,6 +10,7 @@ export const client = pgTable('client', {
   age: integer().notNull(),
   height: integer().notNull(),
   weight: integer().notNull(),
+  email: text().notNull(),
   user_id: integer('user_id').references(() => user.id),
   personal_id: integer('personal_id').references(() => personal.id),
   workout_id: integer('workout_id').references(() => workouts.id),
