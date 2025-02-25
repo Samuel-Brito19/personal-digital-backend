@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { WorkoutsService } from './workouts.service';
 import { CreateWorkoutDTO } from './dto/create-workout-dto';
 
@@ -16,7 +24,7 @@ export class WorkoutsController {
     return this.workoutsService.createWorkout(request);
   }
 
-  @Get()
+  @Get(':name')
   async getWorkoutByName(@Body() name: string) {
     return this.workoutsService.findWorkoutByName(name);
   }
@@ -24,5 +32,10 @@ export class WorkoutsController {
   @Put(':id')
   async updateWorkout(workoutId: number, data: CreateWorkoutDTO) {
     return this.workoutsService.updateWorkout(workoutId, data);
+  }
+
+  @Delete(':id')
+  async deleteWorkout(@Param('id') workoutId: number) {
+    return this.workoutsService.deleteWorkout(workoutId);
   }
 }

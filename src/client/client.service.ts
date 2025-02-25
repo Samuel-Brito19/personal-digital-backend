@@ -33,4 +33,10 @@ export class ClientService {
       .where(eq(schema.client.id, clientId))
       .returning();
   }
+
+  async deleteClient(clientId: number) {
+    await this.database
+      .delete(schema.client)
+      .where(eq(schema.client.id, clientId));
+  }
 }

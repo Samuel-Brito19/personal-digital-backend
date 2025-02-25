@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { PersonalService } from './personal.service';
 import { CreatePersonalDTO } from './dto/create-personal-dto';
 
@@ -27,5 +35,10 @@ export class PersonalController {
     @Body() data: CreatePersonalDTO,
   ) {
     return this.personalService.updatePersonal(personalId, data);
+  }
+
+  @Delete(':id')
+  async deletePersonal(@Param('id') personalId: number) {
+    return this.personalService.deletePersonal(personalId);
   }
 }

@@ -53,4 +53,8 @@ export class UserService {
       .where(eq(schema.user.id, userId))
       .returning();
   }
+
+  async deleteUser(userId: number) {
+    return this.database.delete(schema.user).where(eq(schema.user.id, userId));
+  }
 }

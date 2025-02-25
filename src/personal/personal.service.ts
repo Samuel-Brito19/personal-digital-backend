@@ -35,4 +35,10 @@ export class PersonalService {
       .where(eq(schema.personal.id, personalId))
       .returning();
   }
+
+  async deletePersonal(personalId: number) {
+    return this.database
+      .delete(schema.personal)
+      .where(eq(schema.personal.id, personalId));
+  }
 }

@@ -42,4 +42,10 @@ export class WorkoutsService {
       .where(eq(schema.workouts.id, workoutId))
       .returning();
   }
+
+  async deleteWorkout(workoutId: number) {
+    return this.database
+      .delete(schema.workouts)
+      .where(eq(schema.workouts.id, workoutId));
+  }
 }
