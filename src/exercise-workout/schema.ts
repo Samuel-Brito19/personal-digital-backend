@@ -14,7 +14,6 @@ export const exerciseWorkout = pgTable(
     workout_id: integer('model_id').references(() => workouts.id),
     exercise_id: integer('exercise_id').references(() => exercise.id),
     done: boolean(),
-    link: text().notNull(),
   },
   (table) => [
     check(

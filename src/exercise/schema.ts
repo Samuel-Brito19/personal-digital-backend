@@ -4,4 +4,5 @@ export const exercise = pgTable('exercise', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   description: text('description').notNull(),
+  link: text().notNull(),
 });

@@ -16,11 +16,11 @@ export class PersonalService {
   }
 
   async getPersonals() {
-    await this.database.query.personal.findMany();
+    return this.database.query.personal.findMany();
   }
 
   async getPersonalByName(name: string) {
-    await this.database.query.personal.findFirst({
+    return this.database.query.personal.findFirst({
       where: eq(schema.personal.name, name),
     });
   }
