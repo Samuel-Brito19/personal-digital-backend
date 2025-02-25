@@ -28,4 +28,10 @@ export class ModelsService {
       .where(eq(schema.models.id, modelId))
       .returning();
   }
+
+  async deleteModel(modelId: number) {
+    return this.database
+      .delete(schema.models)
+      .where(eq(schema.models.id, modelId));
+  }
 }
