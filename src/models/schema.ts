@@ -7,7 +7,7 @@ import { workouts } from 'src/workouts/schema';
 export const models = pgTable('models', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: text().notNull(),
-  personalId: integer('personalId').references(() => personal.id, {
+  personal_id: integer('personalId').references(() => personal.id, {
     onDelete: 'cascade',
   }),
 });

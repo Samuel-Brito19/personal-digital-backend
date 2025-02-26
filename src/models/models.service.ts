@@ -13,7 +13,7 @@ export class ModelsService {
 
   async getModels(personalId: number) {
     return this.database.query.models.findMany({
-      where: eq(schema.models.id, personalId),
+      where: eq(schema.models.personal_id, personalId),
     });
   }
 
