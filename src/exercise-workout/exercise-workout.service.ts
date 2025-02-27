@@ -12,11 +12,12 @@ export class ExerciseWorkoutService {
     private readonly database: NodePgDatabase<typeof schema>,
   ) {}
 
-  async getExerciseWorkouts() {
+  async getExerciseWorkouts(workoutId: number) {
     await this.database
       .select()
       .from(schema.exerciseWorkout)
-      .innerJoin(exercise, eq(schema.exerciseWorkout.id, exercise.id));
+      .innerJoin(exercise, eq(schema.exerciseWorkout.id, exercise.id))
+      .where(eq(schema.exerciseWorkout.workout_id, workoutId));
   }
 
   async createExerciseWorkouts(
@@ -35,6 +36,12 @@ export class ExerciseWorkoutService {
     await this.database
       .update(schema.exerciseWorkout)
       .set(data)
+      .where(eq(schema.exerciseWorkout.id, exerciseWorkoutId));
+  }
+
+  async deleteExerciseWorkout(exerciseWorkoutId: number) {
+    await this.database
+      .delete(schema.exerciseWorkout)
       .where(eq(schema.exerciseWorkout.id, exerciseWorkoutId));
   }
 }
