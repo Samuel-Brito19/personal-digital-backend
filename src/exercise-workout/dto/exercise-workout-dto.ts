@@ -1,4 +1,4 @@
-class ExerciseWorkoutDTO {
+class CreateExerciseWorkoutDTO {
   sets: number;
   duration?: number;
   repetitions?: number;
