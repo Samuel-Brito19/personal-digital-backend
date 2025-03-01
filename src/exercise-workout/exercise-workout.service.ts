@@ -13,7 +13,7 @@ export class ExerciseWorkoutService {
   ) {}
 
   async getExerciseWorkouts(workoutId: number) {
-    await this.database
+    return await this.database
       .select()
       .from(schema.exerciseWorkout)
       .innerJoin(exercise, eq(schema.exerciseWorkout.id, exercise.id))
