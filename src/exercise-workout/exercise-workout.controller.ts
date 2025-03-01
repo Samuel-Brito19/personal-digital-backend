@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ExerciseWorkoutService } from './exercise-workout.service';
 
 @Controller('exercise-workout')
@@ -8,7 +16,7 @@ export class ExerciseWorkoutController {
   ) {}
 
   @Get(':id')
-  async getExerciseWorkout(workoutId: number) {
+  async getExerciseWorkout(@Param('id') workoutId: number) {
     return this.exerciseWorkoutsService.getExerciseWorkouts(workoutId);
   }
 
@@ -19,14 +27,16 @@ export class ExerciseWorkoutController {
 
   @Put('id')
   async updateExerciseWorkout(
+    @Param('id')
     exerciseWorkoutId: number,
+    @Body()
     data: CreateExerciseDTO,
   ) {
     return this.updateExerciseWorkout(exerciseWorkoutId, data);
   }
 
   @Delete('id')
-  async deleteExerciseWorkout(exerciseWorkoutId: number) {
+  async deleteExerciseWorkout(@Param('id') exerciseWorkoutId: number) {
     return this.exerciseWorkoutsService.deleteExerciseWorkout(
       exerciseWorkoutId,
     );

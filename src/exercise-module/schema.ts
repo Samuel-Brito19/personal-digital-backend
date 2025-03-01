@@ -6,7 +6,7 @@ import { models } from 'src/models/schema';
 export const exerciseModule = pgTable(
   'exerciseModule',
   {
-    id: integer().primaryKey(),
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
     sets: integer().notNull(),
     duration: integer(),
     repetitions: integer(),
@@ -14,7 +14,6 @@ export const exerciseModule = pgTable(
     model_id: integer('model_id').references(() => models.id),
     exercise_id: integer('exercise_id').references(() => exercise.id),
     done: boolean(),
-    link: text().notNull(),
   },
   (table) => [
     check(
