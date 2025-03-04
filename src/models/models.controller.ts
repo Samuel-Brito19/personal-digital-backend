@@ -1,6 +1,8 @@
 import { Controller, Delete, Get, Param, Put } from '@nestjs/common';
 import { ModelsService } from './models.service';
 import { date } from 'drizzle-orm/mysql-core';
+import { CreateModelDTO } from './dto/create-model-dto';
+import { CreateExerciseDTO } from 'src/exercise/dto/create-exercise-dto';
 
 @Controller('models')
 export class ModelsController {

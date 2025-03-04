@@ -1,4 +1,4 @@
-class CreateExerciseWorkoutDTO {
+export class CreateExerciseWorkoutDTO {
   sets: number;
   duration?: number;
   repetitions?: number;

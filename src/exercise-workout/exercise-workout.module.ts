@@ -7,5 +7,6 @@ import { DatabaseModule } from 'src/database/database.module';
   imports: [DatabaseModule],
   providers: [ExerciseWorkoutService],
   controllers: [ExerciseWorkoutController],
+  exports: [ExerciseWorkoutService],
 })
 export class ExerciseWorkoutModule {}

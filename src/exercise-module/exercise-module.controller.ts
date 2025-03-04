@@ -8,6 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { ExerciseModuleService } from './exercise-module.service';
+import { CreateExerciseModuleDTO } from './dto/create-exercise-module-dto';
 
 @Controller('exercise-module')
 export class ExerciseModuleController {

@@ -1,4 +1,4 @@
-class CreateExerciseModuleDTO {
+export class CreateExerciseModuleDTO {
   sets: number;
   duration?: number;
   repetitions?: number;
