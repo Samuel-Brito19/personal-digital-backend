@@ -13,7 +13,6 @@ export const client = pgTable('client', {
   email: text().notNull(),
   user_id: integer('user_id').references(() => user.id),
   personal_id: integer('personal_id').references(() => personal.id),
-  workout_id: integer('workout_id').references(() => workouts.id),
   group_id: integer('group_id').references(() => groups.id),
 });
 

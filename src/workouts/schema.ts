@@ -8,10 +8,10 @@ import { personal } from 'src/personal/schema';
 export const workouts = pgTable('workouts', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: text().notNull(),
-  personalId: integer('personalId').references(() => personal.id, {
+  personal_id: integer('personal_id').references(() => personal.id, {
     onDelete: 'cascade',
   }),
-  clientId: integer('clientId').references(() => client.id, {
+  client_id: integer('clientId').references(() => client.id, {
     onDelete: 'cascade',
   }),
   model_id: integer('model_id')
@@ -22,11 +22,11 @@ export const workouts = pgTable('workouts', {
 export const workoutRelations = relations(workouts, ({ one, many }) => ({
   exercises: many(exercise),
   personal: one(personal, {
-    fields: [workouts.personalId],
+    fields: [workouts.personal_id],
     references: [personal.id],
   }),
   clients: one(client, {
-    fields: [workouts.clientId],
+    fields: [workouts.client_id],
     references: [client.id],
   }),
   model: one(models, {
