@@ -21,7 +21,7 @@ export class ExerciseWorkoutController {
   }
 
   @Post()
-  async createExerciseWorkout(request: CreateExerciseWorkoutDTO) {
+  async createExerciseWorkout(@Body() request: CreateExerciseWorkoutDTO) {
     return this.exerciseWorkoutsService.createExerciseWorkouts(request);
   }
 

@@ -30,7 +30,10 @@ export class WorkoutsController {
   }
 
   @Put(':id')
-  async updateWorkout(workoutId: number, data: CreateWorkoutDTO) {
+  async updateWorkout(
+    @Param('id') workoutId: number,
+    @Body() data: CreateWorkoutDTO,
+  ) {
     return this.workoutsService.updateWorkout(workoutId, data);
   }
 

@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ExerciseService } from './exercise.service';
 
 @Controller('exercise')
@@ -11,12 +19,15 @@ export class ExerciseController {
   }
 
   @Post()
-  async createExercise(request: CreateExerciseDTO) {
+  async createExercise(@Body() request: CreateExerciseDTO) {
     return this.exerciseService.createExercise(request);
   }
 
   @Put(':id')
-  async updateExercise(exerciseId: number, request: CreateExerciseDTO) {
+  async updateExercise(
+    @Param('id') exerciseId: number,
+    @Body() request: CreateExerciseDTO,
+  ) {
     await this.exerciseService.updateExercise(exerciseId, request);
   }
 
